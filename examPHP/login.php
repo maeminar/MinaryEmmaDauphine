@@ -1,5 +1,5 @@
 <?php
-$title = "Le Dauphiné";
+$title = "Login";
 
 include_once("block/header.php");
 include("block/navbar.php");
