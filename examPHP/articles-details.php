@@ -17,7 +17,7 @@ if(isset($_GET["id"]) === false) {
     header("http://localhost/dauphineexam/examPHP/index.php");
 }?>
 <?php
-$database = connectDB();
+$database = connect_to_DB();
 
 $id = $_GET["id"];
 $articles = findArticlesbyId ($database, $id);

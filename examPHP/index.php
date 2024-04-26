@@ -3,7 +3,7 @@ $title = "Le Dauphiné";
 require_once("database.php");
 include_once("block/header.php");
 include("block/navbar.php");
-$dataBase = connectDB();
+$dataBase = connect_to_DB();
 ?>
 
 

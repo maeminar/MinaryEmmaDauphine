@@ -8,10 +8,10 @@ if (!isset($_SESSION['utilisateur']) ) {
 
 include("../block/header.php");
 
-require("../utils/database.php");
+require("../database.php");
 $title = "Page admin";
 
-$pdo = connectDB();
+$database = connect_to_DB();
 
 ?>
 <?php

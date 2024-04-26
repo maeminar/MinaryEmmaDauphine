@@ -12,7 +12,7 @@ $title = "Page admin";
 
 
 
-$pdo = connectDB();
+$database = connect_to_DB();
 
 ?>
 

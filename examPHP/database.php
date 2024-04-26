@@ -8,7 +8,7 @@ function configPdo(PDO $database): void
     $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 }
 
-function connectDB(): PDO
+function connect_to_DB(): PDO
 {
 
     try {
@@ -18,11 +18,11 @@ function connectDB(): PDO
         $user = "root";
         $password = "";
 
-        $pdo = new PDO("mysql:host=" . $host . ";port=3307;dbname=" . $databaseName . ";charset=utf8", $user, $password);
+        $database = new PDO("mysql:host=" . $host . ";port=3307;dbname=" . $databaseName . ";charset=utf8", $user, $password);
 
-        configPdo($pdo);
+        configPdo($database);
 
-        return $pdo;
+        return $database;
     } catch (Exception $e) {
 
         echo ("Erreur à la connexion: " .  $e->getMessage());

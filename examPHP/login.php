@@ -3,6 +3,8 @@ $title = "Login - Admin";
 
 include_once("block/header.php");
 include("block/navbar.php");
+
+$errors = [];
 ?>
 
 <div class="container">
@@ -14,7 +16,7 @@ include("block/navbar.php");
 //vérifie si le formulaire a été soumis en méthode POST et donc validé
 if ( $_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['username'], $_POST['password'])) {
     //Si oui, alors j'accède à la BDD
-    $database = connectDB();
+    $database = connect_to_DB();
     //Ensuite, on vérifie si un compte avec le username ET le mot de passe existe
     $reponse = $database->prepare('SELECT username, password FROM utilisateur WHERE username = :username AND password = :password');
     $reponse->execute([
@@ -23,26 +25,46 @@ if ( $_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['username'], $_POST['
 ]);
     $utilisateur = $reponse->fetch();
 }
+if ($utilisateur !== false) {
+  // Vérifier les mots de passe
+  if (password_verify($_POST["password"], $utilisateur["password"])) {
+      // Session save
+      session_start();
+
+      $_SESSION["username"] = $_POST["username"];
+
+      header("Location: https://localhost/dauphineexam/admin/index.php");
+  } else {
+      $errors["global"] = "Identifiants invalides";
+  }
+} else {
+  $errors["global"] = "Identifiants manquants";
+}
+
 ?>
+<body>
+  
 
-
-<form>
-  <div class="form-group row">
-    <label for="username" name="username" id="username" class="col-sm-2 col-form-label">Identifiant :</label>
+<div class="p-3 m-5 d-flex justify-content-center align-items-center flex-column border border-4 border-black bg-dark text-white">
+<h1>Connectez-vous</h1>
+<form method="POST" action="login.php">
+    <div class="form-group row">
+<label for="username">Identifiant :</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="username" placeholder="identifiant">
+<input type="text" name="username" id="username">
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="password" name="password" id="password" class="col-sm-2 col-form-label">Mot de passe :</label>
+    </div>
+    <div class="form-group row">
+<label  for="password">Mot de passe :</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="password" placeholder="mot de passe">
-    </div>
-    
-  </div>
-  <input type="submit" value="Se connecter">
+<input type="password" name="password" id="password">
+    <div class="col-sm-10">
+<input type="submit" value="se connecter">
+</div>
+</div>
 </form>
 
 <?php
 include_once("block/footer.php");
 ?>
+</body>
