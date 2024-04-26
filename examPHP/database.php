@@ -18,14 +18,14 @@ function connect_to_DB(): PDO
         $user = "root";
         $password = "";
 
-        $database = new PDO("mysql:host=" . $host . ";port=3307;dbname=" . $databaseName . ";charset=utf8", $user, $password);
+        $bdd = new PDO("mysql:host=" . $host . ";port=3307;dbname=" . $databaseName . ";charset=utf8", $user, $password);
 
-        configPdo($database);
+        configPdo($bdd);
 
-        return $database;
+        return $bdd;
     } catch (Exception $e) {
 
-        echo ("Erreur à la connexion: " .  $e->getMessage());
+        echo ("Erreur :" .  $e->getMessage());
 
         exit();
     }

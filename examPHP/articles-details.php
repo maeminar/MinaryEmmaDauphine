@@ -3,7 +3,6 @@ $title = "Le Dauphiné";
 require_once("database.php");
 include_once("block/header.php");
 include("block/navbar.php");
-$dataBase = connectDB();
 ?>
 
 <div class="container">
@@ -13,11 +12,12 @@ $dataBase = connectDB();
 </div>
 
 <?php 
+$database = connect_to_DB();
+
 if(isset($_GET["id"]) === false) {
     header("http://localhost/dauphineexam/examPHP/index.php");
 }?>
 <?php
-$database = connect_to_DB();
 
 $id = $_GET["id"];
 $articles = findArticlesbyId ($database, $id);
