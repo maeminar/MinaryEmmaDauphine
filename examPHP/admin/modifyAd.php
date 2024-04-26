@@ -18,5 +18,4 @@ $pdo = connectDB();
 ?>
 
 
-
 <form action=""></form>

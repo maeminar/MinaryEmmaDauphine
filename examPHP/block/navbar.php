@@ -1,9 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg bg-primary-subtle">
     <div class="container-fluid">
-
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav text-dark">
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost/examPHP/index.php">Home</a>
+                <a class="nav-link" href="http://localhost/dauphineexam/examPHP/index.php">Accueil</a>
             </li>
         </ul>
     </div>

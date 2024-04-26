@@ -1,11 +1,11 @@
 <?php
 
-function configPdo(PDO $pdo): void
+function configPdo(PDO $database): void
 {
     // Recevoir les erreurs PDO ( coté SQL )
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // Choisir les indices dans les fetchs
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 }
 
 function connectDB(): PDO
@@ -29,5 +29,17 @@ function connectDB(): PDO
 
         exit();
     }
+}
+
+function findArticles(PDO $database): array {
+    $reponse = $database->query('SELECT * FROM annonce');
+    return $reponse->fetchAll();
+}
+
+//Fonction pour rechercher un article dans la BDD grâce à son ID//
+function findArticlesbyId (PDO $database, int $id) :array {
+    $reponse = $database->prepare('SELECT * FROM annonce WHERE id = :id');
+    $reponse->execute([":id" => $id]);
+    return $reponse->fetchAll();
 }
 ?>

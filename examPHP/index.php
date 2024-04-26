@@ -6,29 +6,29 @@ include("block/navbar.php");
 $dataBase = connectDB();
 ?>
 
-<div class="d-flex justify-content-evenly align-items-center flex-wrap gap-3">
+
+<div class="container">
+
+    <h1 class="text-center m-5"><?php echo ($title ?? "Default Title") ?></h1>
+
+</div>
 
 <?php
-
 $articles = findArticles($dataBase);
-
 foreach ($articles as $article) { ?>
-    <div class="col-3 border border-primary border-2 rounded h-25">
+<div class="row d-flex justify-content-center m-5">
+  <div class="border border-grey col-sm-6 mb-3 mb-sm-0">
+  <p class="m-3">Date de publication : Le <?php echo ($article['datePublication'])?></p>
         <h1><?php echo ($article['titre'])?></h1>
-        <p><?php echo ($article['id'])?></p>
-        <img src="<?php echo ($article['imageURL'])?>" alt="mon image">
+        <p>ID de l'article :<?php echo ($article['id'])?></p>
+        <img src="<?php echo $article['imageUrl'];?>" class="img-fluid" alt="image de mon article">
         <p><?php echo ($article['contenu'])?></p>
-        <p><?php echo ($article['auteur'])?></p>
-        <p><?php echo ($article['datePublication'])?></p>
+        <p class="m-3">Article rédigé par : <?php echo ($article['auteur']);?></p>
+        <a href="articles-details.php?id=<?php echo $article['id']; ?>">En savoir plus</a>
     </div>
 <?php
 }
 ?>
-
-<div class="container">
-
-    <h1 class="text-center"><?php echo ($title ?? "Default Title") ?></h1>
-
 </div>
 
 <?php
