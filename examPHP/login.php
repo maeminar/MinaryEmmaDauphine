@@ -37,32 +37,26 @@ if ( $_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST['username'], $_POST['
 { 
 //Si oui, alors j'accède à la BDD
     $database = connect_to_DB();
-    //Ensuite, on vérifie si un compte avec le username ET le mot de passe existe
+    //Ensuite, on vérifie si un compte avec le username existe
     $reponse = $database->prepare('SELECT username, password FROM utilisateur WHERE username = :username');
     $reponse->execute([
     ":username" => $_POST["username"]
     ]);
     $utilisateur = $reponse->fetch();
-    // Si l'utilisateur est connecté, alors on rentre dans admin. Sinon, on lui indique que les identifiants sont éronnés
+    // Si l'utilisateur est trouvé, vérifiez le mot de passe
     if ($utilisateur !== false) {
         if (password_verify($_POST['password'], $utilisateur['password'])) {
             $_SESSION["username"] = $_POST["username"];
             header("Location: http://localhost/dauphineexam/examPHP/admin/index.php");
+            exit;
         } 
-    } 
+}
     else {
         $error["global"] = "Vos identifiants sont incorrects. Veuillez réessayer.";
-        var_dump($error);
-    }
+        echo $error["global"];
 }
-else {
-    $error["global"] = "Vous n'avez pas rentré d'identifiants. Veuillez réessayer.";
-    var_dump($error);
 }
 ?>
-<body>
-
-
 
 <?php
 // Vérifier si l'utilisateur.ice est connecté(e)
@@ -75,4 +69,3 @@ if (isset($_SESSION['username'])) {
 <?php
 include_once("block/footer.php");
 ?>
-</body>
