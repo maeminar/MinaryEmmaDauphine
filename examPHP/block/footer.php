@@ -1,7 +1,7 @@
 <?php
 $title = "Footer";
 
-include_once("block/header.php");
+include_once("header.php");
 ?>
 
 

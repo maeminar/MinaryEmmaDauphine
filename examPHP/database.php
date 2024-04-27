@@ -49,4 +49,17 @@ function findArticlesbyId (PDO $database, int $id) :array {
 
 //Fonction pour ajouter un article si on est connecté en tant que admin//
 
+function createAd (PDO $database): void {
+    $reponse = $database->prepare('INSERT INTO annonce (id, imageURL, contenu, titre, auteur, datePublication) VALUES (:id, :imageURL, :contenu, :titre, :auteur, :date)');
+    $reponse->execute([
+        ":id" => $_POST["id"],
+        ":imageURL" => $_POST["imageURL"],
+        ":contenu" => $_POST["contenu"],
+        ":titre" => $_POST["titre"],
+        ":auteur" => $_POST["auteur"],
+        ":date" => date("Y-m-d H:i:s")
+    ]);
+    return;
+}
+
 ?>
