@@ -42,4 +42,11 @@ function findArticlesbyId (PDO $database, int $id) :array {
     $reponse->execute([":id" => $id]);
     return $reponse->fetchAll();
 }
+
+//Fonction pour modifier un article si on est connecté en tant que admin//
+
+//Fonction pour supprimer un article si on est connecté en tant que admin//
+
+//Fonction pour ajouter un article si on est connecté en tant que admin//
+
 ?>

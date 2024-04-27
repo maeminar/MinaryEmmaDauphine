@@ -1,5 +1,5 @@
 <?php
-session_start(;)
+session_start();
 //Si l'utilisateur n'est pas connecté, alors il sera redirigé vers la page d'accueil :
 if (!isset($_SESSION['utilisateur']) ) {
     header("Location : http://localhost/dauphineexam/examPHP/index.php")

@@ -4,14 +4,15 @@ require_once("database.php");
 include_once("block/header.php");
 include("block/navbar.php");
 $dataBase = connect_to_DB();
+session_start();
 ?>
-
 
 <div class="container">
 
     <h1 class="text-center m-5"><?php echo ($title ?? "Default Title") ?></h1>
 
 </div>
+
 
 <?php
 $articles = findArticles($dataBase);
@@ -30,6 +31,7 @@ foreach ($articles as $article) { ?>
 }
 ?>
 </div>
+
 
 <?php
 include_once("block/footer.php");
