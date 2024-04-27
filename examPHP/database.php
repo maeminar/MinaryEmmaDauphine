@@ -62,4 +62,15 @@ function createAd (PDO $database): void {
     return;
 }
 
+function modifyAd (PDO $database) : void {
+    $reponse = $database->prepare('UPDATE annonce SET imageURL = :imageURL, contenu = :contenu, titre = :titre, auteur = :auteur, date = :date WHERE id = :id');
+    $reponse->execute([
+        ":imageURL" => $_POST["imageURL"],
+        ":contenu" => $_POST["contenu"],
+        ":titre" => $_POST["titre"],
+        ":auteur" => $_POST["auteur"],
+        ":date" => date("Y-m-d H:i:s")
+    ]);
+    return;
+}
 ?>

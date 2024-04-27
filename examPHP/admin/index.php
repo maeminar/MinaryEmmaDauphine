@@ -14,6 +14,10 @@ include_once('logoutForm.php');
 $dataBase = connect_to_DB();
 ?>
 
+<form method="POST" action="createAd.php">
+    <input class="btn btn-primary text-align-center m-5" type="submit" value="Ajouter une annonce">
+</form>
+
 <div class="container">
     <h1 class="text-center m-5"><?php echo ($title ?? "Default Title") ?></h1>
 </div>
@@ -29,7 +33,7 @@ foreach ($articles as $article) { ?>
         <img src="<?php echo $article['imageUrl'];?>" class="img-fluid" alt="image de mon article">
         <p><?php echo ($article['contenu'])?></p>
         <p class="m-3">Article rédigé par : <?php echo ($article['auteur']);?></p>
-        <a href="../admin/articles-details.php?id=<?php echo $article['id']; ?>">En savoir plus</a>
+        <a class="btn btn-primary text-align-center m-5" href="modifyAd.php">Modifier cette annonce</a>
     </div>
 <?php
 }

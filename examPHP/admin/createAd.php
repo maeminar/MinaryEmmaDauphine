@@ -4,7 +4,6 @@ session_start();
     if (!isset($_SESSION['username']) ) {
         header("Location : http://localhost/dauphineexam/examPHP/index.php");
     }
-$title = "Le Dauphiné - Admin";
 require_once("../database.php");
 include_once("../block/header.php");
 include_once('logoutForm.php');
@@ -20,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <div class="p-3 m-5 d-flex justify-content-center align-items-center flex-column border border-4 border-black bg-dark text-white">
 <h1>Ajouter une annonce</h1>
@@ -57,3 +57,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Ajouter">
     </form>
 </div>
+
+<a class="btn btn-primary text-align-center m-5" href="index.php">Retour</a>
