@@ -33,15 +33,17 @@ $articles = findArticlesbyId ($database, $id);
 
 foreach ($articles as $article) {
 ?>
+<div class="text-center">
     <a href="index.php">Retour à la liste des articles</a>
     <h1> <?php echo($article['titre']); ?></h1>
+    <p>Date de publication : Le <?php echo($article['datePublication']); ?></p>
     <img src="<?php echo($article['imageUrl']) ?>" class="img-fluid" alt="image de mon article">
-    <p><?php echo($article['id']); ?></p>
     <p><?php echo($article['contenu']); ?></p>
-    <p><?php echo($article['auteur']); ?></p>
-    <p><?php echo($article['datePublication']); ?></p>
+    <p>Article rédigé par : <?php echo($article['auteur']); ?></p>
+</div>
 <?php
 }
 ?>
-
-
+<?php
+include_once("block/footer.php");
+?>

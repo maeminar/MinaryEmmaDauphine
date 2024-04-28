@@ -1,9 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-primary-subtle">
-    <div class="container-fluid">
-        <ul class="navbar-nav text-dark">
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost/dauphineexam/examPHP/index.php">Accueil</a>
-            </li>
-        </ul>
-    </div>
+  <a class="navbar-brand m-3" href="http://localhost/dauphineexam/examPHP/index.php">Accueil</a>
+  <div class="ml-auto">
+    <img src="img/logo.png" width="30" height="30" class="m-2 d-inline-block align-top" alt="logo">
+  </div>
 </nav>

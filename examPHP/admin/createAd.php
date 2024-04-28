@@ -6,7 +6,6 @@ session_start();
     }
 require_once("../database.php");
 include_once("../block/header.php");
-include_once('logoutForm.php');
 $database = connect_to_DB();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,8 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["id"]) && isset($_POST["imageURL"]) && isset($_POST["contenu"]) && isset($_POST["titre"]) && isset($_POST["auteur"])) {
         // Appel de la fonction pour ajouter l'annonce à la base de données
         createAd($database);
-    } else {
-        echo "Tous les champs du formulaire doivent être remplis.";
     }
 }
 ?>

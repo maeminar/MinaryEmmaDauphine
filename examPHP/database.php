@@ -32,7 +32,7 @@ function connect_to_DB(): PDO
 }
 
 function findArticles(PDO $database): array {
-    $reponse = $database->query('SELECT * FROM annonce');
+    $reponse = $database->query('SELECT * FROM annonce ORDER BY datePublication DESC');
     return $reponse->fetchAll();
 }
 

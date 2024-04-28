@@ -8,18 +8,16 @@ session_start();
 ?>
 
 <div class="container">
-
-    <h1 class="text-center m-5"><?php echo ($title ?? "Default Title") ?></h1>
-
+    <h1 class="text-center m-3"><?php echo ($title ?? "Default Title") ?></h1>
 </div>
 
 
 <?php
 $articles = findArticles($dataBase);
 foreach ($articles as $article) { ?>
-<div class="row d-flex justify-content-center m-5">
-  <div class="border border-grey col-sm-6 mb-3 mb-sm-0">
-  <p class="m-3">Date de publication : Le <?php echo ($article['datePublication'])?></p>
+<div class="row d-flex justify-content-center">
+  <div class="border border-grey m-5 col-sm-6 mb-3 mb-sm-0 text-center">
+        <p >Date de publication : Le <?php echo ($article['datePublication'])?></p>
         <h1><?php echo ($article['titre'])?></h1>
         <img src="<?php echo $article['imageUrl'];?>" class="img-fluid" alt="image de mon article">
         <p><?php echo ($article['contenu'])?></p>
@@ -30,7 +28,6 @@ foreach ($articles as $article) { ?>
 }
 ?>
 </div>
-
 
 <?php
 include_once("block/footer.php");
