@@ -2,7 +2,7 @@
 session_start();
 //Vérifier si l'utilisateur est connecté. Si l'utilisateur n'est pas connecté, alors il sera redirigé vers la page d'accueil :
     if (!isset($_SESSION['username']) ) {
-        header("Location : http://localhost/dauphineexam/examPHP/index.php");
+        header("Location: http://localhost/dauphineexam/examPHP/index.php");
     }
 require_once("../database.php");
 include_once("../block/header.php");

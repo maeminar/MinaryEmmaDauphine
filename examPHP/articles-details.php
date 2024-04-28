@@ -24,7 +24,7 @@ if (isset($_SESSION['username'])) {
 <?php 
 
 if(isset($_GET["id"]) === false) {
-    header("http://localhost/dauphineexam/examPHP/index.php");
+    header("Location: http://localhost/dauphineexam/examPHP/index.php");
 }?>
 <?php
 

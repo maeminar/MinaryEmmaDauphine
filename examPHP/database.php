@@ -43,12 +43,7 @@ function findArticlesbyId (PDO $database, int $id) :array {
     return $reponse->fetchAll();
 }
 
-//Fonction pour modifier un article si on est connecté en tant que admin//
-
-//Fonction pour supprimer un article si on est connecté en tant que admin//
-
 //Fonction pour ajouter un article si on est connecté en tant que admin//
-
 function createAd (PDO $database): void {
     $reponse = $database->prepare('INSERT INTO annonce (id, imageURL, contenu, titre, auteur, datePublication) VALUES (:id, :imageURL, :contenu, :titre, :auteur, :date)');
     $reponse->execute([
@@ -62,14 +57,25 @@ function createAd (PDO $database): void {
     return;
 }
 
+//Fonction pour modifier un article si on est connecté en tant que admin//
 function modifyAd (PDO $database) : void {
-    $reponse = $database->prepare('UPDATE annonce SET imageURL = :imageURL, contenu = :contenu, titre = :titre, auteur = :auteur, date = :date WHERE id = :id');
+    $reponse = $database->prepare('UPDATE annonce SET imageURL = :imageURL, contenu = :contenu, titre = :titre, auteur = :auteur, datePublication = :date WHERE id = :id');
     $reponse->execute([
         ":imageURL" => $_POST["imageURL"],
         ":contenu" => $_POST["contenu"],
         ":titre" => $_POST["titre"],
         ":auteur" => $_POST["auteur"],
-        ":date" => date("Y-m-d H:i:s")
+        ":date" => date("Y-m-d H:i:s"),
+        ":id" => $_POST["id"]
+    ]);
+    return;
+}
+
+//Fonction pour supprimer un article si on est connecté en tant que admin//
+function deleteAd (PDO $database): void {
+    $reponse = $database->prepare('DELETE FROM annonce WHERE id = :id');
+    $reponse->execute([
+        ":id" => $_GET["id"]
     ]);
     return;
 }

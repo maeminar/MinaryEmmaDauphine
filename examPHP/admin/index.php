@@ -2,14 +2,13 @@
 session_start();
 //Vérifier si l'utilisateur est connecté. Si l'utilisateur n'est pas connecté, alors il sera redirigé vers la page d'accueil :
     if (!isset($_SESSION['username']) ) {
-        header("Location : http://localhost/dauphineexam/examPHP/index.php");
+        header("Location: http://localhost/dauphineexam/examPHP/index.php");
     }
 ?>
 <?php
 $title = "Le Dauphiné - Admin";
 require_once("../database.php");
 include_once("../block/header.php");
-include("../block/navbar.php");
 include_once('logoutForm.php');
 $dataBase = connect_to_DB();
 ?>
@@ -33,7 +32,11 @@ foreach ($articles as $article) { ?>
         <img src="<?php echo $article['imageUrl'];?>" class="img-fluid" alt="image de mon article">
         <p><?php echo ($article['contenu'])?></p>
         <p class="m-3">Article rédigé par : <?php echo ($article['auteur']);?></p>
-        <a class="btn btn-primary text-align-center m-5" href="modifyAd.php">Modifier cette annonce</a>
+        <a class="btn btn-primary text-align-center m-5" href="modifyAd.php?id=<?php echo $article['id']?>">Modifier cette annonce</a>
+        <form method='POST' action='deleteAd.php?id=<?php echo $article['id']?>'>  
+        <label for="id" name="id"></label>
+        <input class="btn btn-danger text-align-center m-5" type="submit" name="id" id="id" value="Supprimer cette annonce">
+</form>
     </div>
 <?php
 }
